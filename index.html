@@ -73,37 +73,57 @@
         <h1>Space Kill124</h1>
         
         <!-- 按钮 1: 改版官网 -->
-        <a href="https://tks124.github.io/124/" class="btn btn-primary" target="_blank">改版官网
-            
+        <a href="https://tks124.github.io/124/" class="btn btn-primary" target="_blank">改版官网</a>
+        
+        <!-- 按钮 2: 斗地主 -->
         <a href="https://app-d8gm4nxuj1fl.appmiaoda.com/" class="btn btn-primary" target="_blank">斗地主</a>
         
-        <!-- 按钮 2: 网站管理员个人主页 (根据参考信息中的 biibii) -->
+        <!-- 按钮 3: 网站管理员个人主页 -->
         <a href="https://m.bilibili.com/space/482735934?plat_id=1&share_from=space&share_medium=android&share_plat=android&share_session_id=a0b32709-0716-446b-941f-539de858dc73&share_source=COPY&share_tag=s_i&timestamp=1784629471&unique_k=A4FGJGl" class="btn" target="_blank">管理员个人主页</a>
         
-        <!-- 按钮 3: 预留 (更新日志) -->
+        <!-- 按钮 4: 更新日志 -->
         <a href="https://tks124.github.io/tks123/" class="btn" target="_blank">更新日志</a>
 
         <a href="https://tks124.github.io/SpaceKill124/" class="btn" target="_blank">PVZ高级创作</a>
 
         <a href="https://tks124.github.io/tks124/" class="btn" target="_blank">密码强度测试</a>
         
-        <!-- 按钮 4: 预留 (意见反馈) -->
+        <!-- 按钮 5: 意见反馈 -->
         <a href="mailto:tks124@foxmail.com" class="btn">意见反馈</a>
     </div>
     
     <!-- 网页底部版权信息 -->
-<footer style="
-    background-color: #333333; 
-    color: #ffffff; 
-    text-align: center; 
-    padding: 15px 0; 
-    font-size: 14px; 
-    position: fixed; 
-    bottom: 0; 
-    width: 100%; 
-    font-family: 'Microsoft YaHei', sans-serif;">
-    © 太空杀124拥有最终解释权与所有权。
-</footer>
+    <footer style="
+        background-color: #333333; 
+        color: #ffffff; 
+        text-align: center; 
+        padding: 15px 0; 
+        font-size: 14px; 
+        position: fixed; 
+        bottom: 0; 
+        width: 100%; 
+        font-family: 'Microsoft YaHei', sans-serif;">
+        © 太空杀124拥有最终解释权与所有权。
+    </footer>
+
+    <script>
+        // 验证相关的配置
+        const AUTH_KEY = "sk124_auth_token"; // 和验证页面保持一致的键名
+        const AUTH_PAGE_URL = "https://tks124.github.io/tks/"; // 你的验证页面地址
+
+        // 页面加载时执行检查
+        window.onload = function() {
+            // 检查本地存储中是否有验证通过的标记
+            const isVerified = localStorage.getItem(AUTH_KEY);
+
+            if (isVerified !== "true") {
+                // 如果没有验证通过，就强制跳转到验证页面
+                // 使用 replace 是为了防止用户点击后退按钮又回到这个页面
+                window.location.replace(AUTH_PAGE_URL);
+            }
+            // 如果验证通过，则什么都不做，正常显示页面内容
+        };
+    </script>
 
 </body>
 </html>
