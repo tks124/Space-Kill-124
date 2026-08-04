@@ -124,6 +124,10 @@
         }
 
         function navigateWithSafetyCheck(url) {
+            if (!url || url === '#') {
+                return;
+            }
+
             if (isWhitelisted(url)) {
                 window.location.href = url;
                 return;
@@ -143,11 +147,9 @@
         
         document.querySelectorAll('.btn').forEach(btn => {
             btn.addEventListener('click', function(e) {
-                e.preventDefault(); 
+                e.preventDefault();
                 const targetUrl = this.getAttribute('href');
-                if (targetUrl && targetUrl !== '#') {
-                    navigateWithSafetyCheck(targetUrl);
-                }
+                navigateWithSafetyCheck(targetUrl);
             });
         });
 
