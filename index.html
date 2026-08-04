@@ -14,6 +14,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            position: relative;
         }
 
         .container {
@@ -22,6 +23,9 @@
             padding: 40px;
             border-radius: 15px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            position: relative;
+            width: 90%;
+            max-width: 500px;
         }
 
         h1 {
@@ -62,6 +66,16 @@
             color: #0066cc;
         }
         
+        .btn-register {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 0;
+        }
+
         footer {
             background-color: #333333; 
             color: #ffffff; 
@@ -73,11 +87,23 @@
             width: 100%; 
             font-family: 'Microsoft YaHei', sans-serif;
         }
+
+        @media (max-width: 600px) {
+            .btn-register {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin: 0 auto 20px auto;
+                width: 150px;
+            }
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
+        <a href="https://tks124.github.io/zc/" class="btn btn-register">注册</a>
+
         <h1>Space Kill124</h1>
         
         <a href="https://tks124.github.io/124/" class="btn btn-primary">改版官网</a >
