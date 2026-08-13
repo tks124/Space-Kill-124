@@ -76,6 +76,26 @@
             margin: 0;
         }
 
+        .lang-switch {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 0;
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .lang-switch:hover {
+            background-color: white;
+            color: #1e90ff;
+        }
+
         footer {
             background-color: #333333; 
             color: #ffffff; 
@@ -89,10 +109,11 @@
         }
 
         @media (max-width: 600px) {
-            .btn-register {
+            .btn-register, .lang-switch {
                 position: relative;
                 top: 0;
                 right: 0;
+                left: 0;
                 margin: 0 auto 20px auto;
                 width: 150px;
             }
@@ -102,42 +123,99 @@
 <body>
 
     <div class="container">
-        <a href="https://tks124.github.io/zc/" class="btn btn-register">注册</a>
+        <button class="lang-switch" id="langBtn">English</button>
+        <a href="https://tks124.github.io/zc/" class="btn btn-register" data-lang="register">注册</a>
 
-        <h1>Space Kill124</h1>
+        <h1 data-lang="title">Space Kill124</h1>
         
-        <a href="https://tks124.github.io/124/" class="btn btn-primary">改版官网</a >
+        <a href="https://tks124.github.io/124/" class="btn btn-primary" data-lang="mod-site">改版官网</a>
         
-        <a href="https://app-d8gm4nxuj1fl.appmiaoda.com/" class="btn btn-primary">斗地主</a >
+        <a href="https://app-d8gm4nxuj1fl.appmiaoda.com/" class="btn btn-primary" data-lang="landlord">斗地主</a>
         
-        <a href="https://m.bilibili.com/space/482735934?plat_id=1&share_from=space&share_medium=android&share_plat=android&share_session_id=a0b32709-0716-446b-941f-539de858dc73&share_source=COPY&share_tag=s_i&timestamp=1784629471&unique_k=A4FGJGl" class="btn">管理员个人主页</a >
+        <a href="https://m.bilibili.com/space/482735934?plat_id=1&share_from=space&share_medium=android&share_plat=android&share_session_id=a0b32709-0716-446b-941f-539de858dc73&share_source=COPY&share_tag=s_i&timestamp=1784629471&unique_k=A4FGJGl" class="btn" data-lang="admin-profile">管理员个人主页</a>
         
-        <a href="https://tks124.github.io/tks123/" class="btn">更新日志</a >
+        <a href="https://tks124.github.io/tks123/" class="btn" data-lang="changelog">更新日志</a>
 
-        <a href="https://tks124.github.io/pvz2/" class="btn">PVZ高级创作</a >
+        <a href="https://tks124.github.io/pvz2/" class="btn" data-lang="pvz-creator">PVZ高级创作</a>
 
-        <a href="https://tks124.github.io/tks124/" class="btn">密码强度测试</a >
+        <a href="https://tks124.github.io/tks124/" class="btn" data-lang="password-test">密码强度测试</a>
 
-        <a href="https://tks124.github.io/2wm/" class="btn">二维码生成</a >
+        <a href="https://tks124.github.io/2wm/" class="btn" data-lang="qrcode-gen">二维码生成</a>
 
-        <a href="https://tks124.github.io/tp/" class="btn">图片格式转换</a >
+        <a href="https://tks124.github.io/tp/" class="btn" data-lang="img-convert">图片格式转换</a>
         
-        <a href="mailto:tks124@foxmail.com" class="btn">意见反馈</a >
+        <a href="mailto:tks124@foxmail.com" class="btn" data-lang="feedback">意见反馈</a>
     </div>
     
-    <footer>
+    <footer data-lang="footer">
         © 太空杀124拥有最终解释权与所有权。
     </footer>
 
     <script>
         const AUTH_KEY = "sk124_auth_token";
         const AUTH_PAGE_URL = "https://tks124.github.io/tks/";
-        
+        const LANG_KEY = "sk124_lang";
+
         const WHITELIST_DOMAINS = [
             'bilibili.com',
             'foxmail.com'
         ];
 
+        const translations = {
+            zh: {
+                register: "注册",
+                title: "Space Kill124",
+                modSite: "改版官网",
+                landlord: "斗地主",
+                adminProfile: "管理员个人主页",
+                changelog: "更新日志",
+                pvzCreator: "PVZ高级创作",
+                passwordTest: "密码强度测试",
+                qrcodeGen: "二维码生成",
+                imgConvert: "图片格式转换",
+                feedback: "意见反馈",
+                footer: "© 太空杀124拥有最终解释权与所有权。",
+                safetyAlert: "当前前往的网站并非Space Kill 124名下，注意隐私安全。"
+            },
+            en: {
+                register: "Register",
+                title: "Space Kill124",
+                modSite: "Modded Site",
+                landlord: "Landlord Game",
+                adminProfile: "Admin Profile",
+                changelog: "Changelog",
+                pvzCreator: "PVZ Creator",
+                passwordTest: "Password Test",
+                qrcodeGen: "QR Code Gen",
+                imgConvert: "Image Convert",
+                feedback: "Feedback",
+                footer: "© Space Kill124 reserves all rights.",
+                safetyAlert: "The site you are visiting is not owned by Space Kill 124. Proceed with caution."
+            }
+        };
+
+        let currentLang = localStorage.getItem(LANG_KEY) || 'zh';
+
+        function updateText() {
+            const t = translations[currentLang];
+            document.querySelectorAll('[data-lang]').forEach(el => {
+                const key = el.getAttribute('data-lang');
+                if (t[key]) {
+                    if (el.tagName === 'A') {
+                        el.textContent = t[key];
+                    } else {
+                        el.innerText = t[key];
+                    }
+                }
+            });
+            document.getElementById('langBtn').textContent = currentLang === 'zh' ? 'English' : '中文';
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'zh' ? 'en' : 'zh';
+            localStorage.setItem(LANG_KEY, currentLang);
+            updateText();
+        }
 
         function isWhitelisted(url) {
             if (url.startsWith('mailto:')) {
@@ -166,12 +244,13 @@
                 return;
             }
 
-            const isConfirmed = confirm("当前前往的网站并非Space Kill 124名下，注意隐私安全。");
+            const isConfirmed = confirm(translations[currentLang].safetyAlert);
             if (isConfirmed) {
                 window.location.href = url;
             }
         }
 
+        document.getElementById('langBtn').addEventListener('click', toggleLanguage);
         
         document.querySelectorAll('.btn').forEach(btn => {
             btn.addEventListener('click', function(e) {
@@ -182,6 +261,7 @@
         });
 
         window.onload = function() {
+            updateText();
             if (localStorage.getItem(AUTH_KEY) !== "true") {
                 window.location.replace(AUTH_PAGE_URL);
             }
