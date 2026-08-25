@@ -1,4 +1,3 @@
-
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -119,6 +118,27 @@
             }
         }
     </style>
+
+    <script>
+    (function() {
+        try {
+            var link = document.createElement('link');
+            link.rel = 'icon';
+            link.type = 'image/png';
+            link.href = 'tubiao.png';
+            document.head.appendChild(link);
+
+            var appleLink = document.createElement('link');
+            appleLink.rel = 'apple-touch-icon';
+            appleLink.href = 'tubiao.png';
+            document.head.appendChild(appleLink);
+
+            console.log('favicon tubiao.png 加载成功');
+        } catch(e) {
+            console.log('favicon 加载失败:', e);
+        }
+    })();
+    </script>
 </head>
 <body>
 
