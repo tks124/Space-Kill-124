@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -154,8 +155,10 @@
         
         <a href="https://m.bilibili.com/space/482735934?plat_id=1&share_from=space&share_medium=android&share_plat=android&share_session_id=a0b32709-0716-446b-941f-539de858dc73&share_source=COPY&share_tag=s_i&timestamp=1784629471&unique_k=A4FGJGl" class="btn" data-lang="admin-profile">管理员个人主页</a>
 
-        <a href="https://github.com/tks124/tks124-apk/releases/download/v1.0.0/SpaceKill124_v1.0.0.APK" class="btn" data-lang="pvz-creator">官网软件版</a>
+        <!-- 官方软件版（SpaceKill124） -->
+        <a href="https://github.com/tks124/tks124-apk/releases/download/v1.0.0/SpaceKill124_v1.0.0.APK" class="btn" data-lang="official-app">官网软件版</a>
 
+        <!-- PVZ2 高级创作软件版 -->
         <a href="https://github.com/tks124/pvz2-apk/releases/download/v1.1.468/pvz2_v1.1.468.APK" class="btn" data-lang="pvz-creator">pvz2高级创作软件版</a>
         
         <a href="https://tks124.github.io/2wm/" class="btn" data-lang="qrcode-gen">二维码生成</a>
@@ -187,7 +190,8 @@
                 landlord: "斗地主",
                 adminProfile: "管理员个人主页",
                 changelog: "更新日志",
-                pvzCreator: "PVZ高级创作",
+                officialApp: "官网软件版",
+                pvzCreator: "PVZ2高级创作软件版",
                 passwordTest: "密码强度测试",
                 qrcodeGen: "二维码生成",
                 imgConvert: "图片格式转换",
@@ -202,7 +206,8 @@
                 landlord: "Landlord Game",
                 adminProfile: "Admin Profile",
                 changelog: "Changelog",
-                pvzCreator: "PVZ Creator",
+                officialApp: "Official App",
+                pvzCreator: "PVZ2 Creator",
                 passwordTest: "Password Test",
                 qrcodeGen: "QR Code Gen",
                 imgConvert: "Image Convert",
@@ -249,6 +254,12 @@
 
         function navigateWithSafetyCheck(url) {
             if (!url || url === '#') {
+                return;
+            }
+
+            // 官方 GitHub 发布链接直接放行
+            if (url.includes('github.com/tks124')) {
+                window.location.href = url;
                 return;
             }
 
