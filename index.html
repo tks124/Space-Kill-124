@@ -57,8 +57,8 @@
         }
 
         .btn-primary {
-            背景颜色: #fff;
-            颜色: #1e90ff;
+            background-color: #fff;
+            color: #1e90ff;
         }
         .btn-primary:hover {
             background-color: #f0f0f0;
@@ -85,7 +85,7 @@
             margin: 0;
             background-color: rgba(255, 255, 255, 0.2);
             border: 2px solid white;
-: white;
+            color: white;
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -178,7 +178,9 @@
 
         const WHITELIST_DOMAINS = [
             'bilibili.com',
-            'foxmail.com'
+            'foxmail.com',
+            'tks124.github.io',
+            'tks124444.github.io'
         ];
 
         const translations = {
@@ -266,7 +268,7 @@
                 return;
             }
 
-    if (url.includes('github.com/tks124444')) {
+            if (url.includes('github.com/tks124444')) {
                 window.location.href = url;
                 return;
             }
@@ -274,7 +276,7 @@
             if (isWhitelisted(url)) {
                 window.location.href = url;
                 return;
-        }
+            }
 
             if (url.startsWith("https://tks124.github.io/")) {
                 window.location.replace(url);
@@ -306,4 +308,4 @@
     </script>
 
 </body>
-</html>
+    </html>
